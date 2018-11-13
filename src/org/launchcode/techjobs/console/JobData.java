@@ -4,6 +4,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -78,6 +79,42 @@ public class JobData {
 
             if (aValue.contains(value)) {
                 jobs.add(row);
+            }
+
+        }
+
+        return jobs;
+    }
+
+    public static ArrayList<HashMap<String, String>> findByValue(Integer column, String value) {
+
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        String[] categories = new String[5];
+        categories[0] = "position type";
+        categories[1] = "name";
+        categories[2] = "employer";
+        categories[3] = "location";
+        categories[4] = "core competency";
+
+
+
+        for (HashMap<String, String> row : allJobs) {
+        for (String category : categories) {
+
+            String aValue = row.get(category);
+
+      // String lowercategory = aValue.toLowerCase();
+      // String lowerterm = value.toLowerCase();
+
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
+
+                jobs.add(row);
+                break;
+                }
             }
         }
 

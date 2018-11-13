@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -61,7 +62,9 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    int column = 0;
+                    printJobs(JobData.findByValue(column, searchTerm));
+                    //System.out.println("Search all fields not yet implemented.");
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -78,8 +81,15 @@ public class TechJobs {
 
         // Put the choices in an ordered structure so we can
         // associate an integer with each one
+
+        //Test prints
+        /*
+        System.out.println(choices);
+        System.out.println(choices.keySet());
+        */
         Integer i = 0;
         for (String choiceKey : choices.keySet()) {
+
             choiceKeys[i] = choiceKey;
             i++;
         }
@@ -111,6 +121,33 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if(someJobs.size() == 0){
+            System.out.println("That search term was not found");
+        }
+
+         for (Integer i = 0; i < someJobs.size(); i++){
+
+             HashMap<String, String> hashmap = someJobs.get(i);
+             String positionType = hashmap.get("position type");
+             String name = hashmap.get("name");
+             String employer = hashmap.get("employer");
+             String location = hashmap.get("location");
+             String coreCompetency = hashmap.get("core competency");
+
+             System.out.println( "Position type: " + positionType + "\n");
+             System.out.println( "Name: " + name + "\n");
+             System.out.println( "Employer: " + employer + "\n");
+             System.out.println( "Location: " + location + "\n");
+             System.out.println( "Core competency: " + coreCompetency + "\n");
+             System.out.println("--------------------------------");
+
+             //for (Integer j = 0; j < someJobs.get(i).size(); j++)
+
+                 //System.out.println("\n");
+
+                 //System.out.println(someJobs.get(i));
+
+        }
+        //System.out.println(JobData.findAll());
     }
 }
