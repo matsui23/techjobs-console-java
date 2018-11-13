@@ -125,8 +125,18 @@ public class TechJobs {
             System.out.println("That search term was not found");
         }
 
-         for (Integer i = 0; i < someJobs.size(); i++){
+         for (HashMap<String, String> hashmap : someJobs){
 
+             for (Map.Entry<String,String> mapEntry : hashmap.entrySet()){
+
+                 String key = mapEntry.getKey();
+                 String value = mapEntry.getValue();
+
+                 System.out.println(key + ":" + value);
+             }
+
+             System.out.println("________________________________" + "\n");
+             /*
              HashMap<String, String> hashmap = someJobs.get(i);
              String positionType = hashmap.get("position type");
              String name = hashmap.get("name");
@@ -141,12 +151,18 @@ public class TechJobs {
              System.out.println( "Core competency: " + coreCompetency + "\n");
              System.out.println("--------------------------------");
 
-             //for (Integer j = 0; j < someJobs.get(i).size(); j++)
 
-                 //System.out.println("\n");
 
-                 //System.out.println(someJobs.get(i));
 
+         for (Map.Entry(String, String) item : someJobs.entrySet()){}
+
+             for (Integer j = 0; j < someJobs.get(i).size(); j++) {
+
+                 System.out.println("\n");
+
+                 System.out.println(someJobs.get(i));
+             }
+             */
         }
         //System.out.println(JobData.findAll());
     }

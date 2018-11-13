@@ -11,6 +11,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -76,6 +77,8 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
+            aValue = aValue.toLowerCase();
+            value = value.toLowerCase();
 
             if (aValue.contains(value)) {
                 jobs.add(row);
@@ -93,24 +96,18 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-        String[] categories = new String[5];
-        categories[0] = "position type";
-        categories[1] = "name";
-        categories[2] = "employer";
-        categories[3] = "location";
-        categories[4] = "core competency";
-
-
 
         for (HashMap<String, String> row : allJobs) {
-        for (String category : categories) {
+            for (Map.Entry<String,String> mapEntry : row.entrySet()) {
 
-            String aValue = row.get(category);
+                String key = mapEntry.getKey();
+                String Avalue = mapEntry.getValue();
 
-      // String lowercategory = aValue.toLowerCase();
-      // String lowerterm = value.toLowerCase();
+                 key = key.toLowerCase();
+                 Avalue = Avalue.toLowerCase();
+                 value = value.toLowerCase();
 
-            if (aValue.toLowerCase().contains(value.toLowerCase())) {
+            if (key.contains(value) || Avalue.contains(value)) {
 
                 jobs.add(row);
                 break;
